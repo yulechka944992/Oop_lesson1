@@ -42,7 +42,13 @@ class TestProduct:
     def test_new_product_quantity(self, first_product):
         """Тест: при добавлении дубликата складывается количество"""
         products = [first_product]
-        new = Product.new_product("Test Product 1", "Description", 10, 3, products)
+        product_dict = {
+            "name": "Test Product 1",
+            "description": "Description",
+            "price": 10,
+            "quantity": 3
+        }
+        new = Product.new_product(product_dict, products)
 
         assert first_product.quantity == 8
         assert new == first_product
@@ -50,6 +56,12 @@ class TestProduct:
     def test_new_product_higher_price(self, first_product):
         """Тест: при дубликате выбирается большая цена"""
         products = [first_product]
-        new = Product.new_product("Test Product 1", "Description", 20, 3, products)
+        product_dict = {
+            "name": "Test Product 1",
+            "description": "Description",
+            "price": 20,
+            "quantity": 3
+        }
+        new = Product.new_product(product_dict, products)
 
         assert first_product.price == 20

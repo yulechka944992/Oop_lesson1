@@ -14,17 +14,21 @@ class Product:
         self.quantity = quantity
 
     @classmethod
-    def new_product(cls, name, description, price, quantity, products):
-        """"""
+    def new_product(cls, product_dict,products=None):
+        """Создаёт новый продукт из словаря"""
+        name = product_dict["name"]
+        description = product_dict["description"]
+        price = product_dict["price"]
+        quantity = product_dict["quantity"]
 
-        for product in products:
-            if product.name.lower() == name.lower():
-                total_quantity = product.quantity + quantity
-                max_price = max(product.price, price)
-                product.quantity = total_quantity
-                product.price = max_price
-
-                return product
+        if products is not None:
+            for product in products:
+                if product.name.lower() == name.lower():
+                    total_quantity = product.quantity + quantity
+                    max_price = max(product.price, price)
+                    product.quantity = total_quantity
+                    product.price = max_price
+                    return product
 
         return cls(name, description, price, quantity)
 
