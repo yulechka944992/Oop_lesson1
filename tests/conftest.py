@@ -17,6 +17,7 @@ def first_product():
         quantity=5,
     )
 
+
 @pytest.fixture
 def second_product():
     """Фикстура со вторым продуктом"""
@@ -27,23 +28,18 @@ def second_product():
         quantity=1,
     )
 
+
 @pytest.fixture
 def empty_category():
     """Фикстура с пустой категорией"""
-    return Category(
-        name="Test Empty Category",
-        description="Test Description",
-        products=[]
-    )
+    return Category(name="Test Empty Category", description="Test Description", products=[])
+
 
 @pytest.fixture
 def category_with_products(first_product, second_product):
     """Фикстура с категорией, содержащей продукты"""
-    return Category(
-        name="Test Category 1",
-        description="Test Category 1",
-        products=[first_product, second_product]
-    )
+    return Category(name="Test Category 1", description="Test Category 1", products=[first_product, second_product])
+
 
 @pytest.fixture
 def categories(empty_category, category_with_products):
@@ -56,6 +52,7 @@ def categories(empty_category, category_with_products):
 
     return [cat1, cat2]
 
+
 @pytest.fixture
 def sample_json_data():
     """Тестовые JSON данные"""
@@ -64,39 +61,24 @@ def sample_json_data():
             "name": "Электроника",
             "description": "Различные электронные устройства",
             "products": [
-                {
-                    "name": "Ноутбук",
-                    "description": "Мощный игровой ноутбук",
-                    "price": 75000.99,
-                    "quantity": 10
-                },
-                {
-                    "name": "Мышь",
-                    "description": "Беспроводная мышь",
-                    "price": 1500.50,
-                    "quantity": 50
-                }
-            ]
+                {"name": "Ноутбук", "description": "Мощный игровой ноутбук", "price": 75000.99, "quantity": 10},
+                {"name": "Мышь", "description": "Беспроводная мышь", "price": 1500.50, "quantity": 50},
+            ],
         },
         {
             "name": "Книги",
             "description": "Художественная литература",
             "products": [
-                {
-                    "name": "Война и мир",
-                    "description": "Роман-эпопея Льва Толстого",
-                    "price": 1200.00,
-                    "quantity": 5
-                }
-            ]
-        }
+                {"name": "Война и мир", "description": "Роман-эпопея Льва Толстого", "price": 1200.00, "quantity": 5}
+            ],
+        },
     ]
 
 
 @pytest.fixture
 def sample_json_file(sample_json_data):
     """Временный JSON файл с тестовыми данными"""
-    with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False, encoding='UTF-8') as tmp_file:
+    with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False, encoding="UTF-8") as tmp_file:
         json.dump(sample_json_data, tmp_file, ensure_ascii=False)
         tmp_file_path = tmp_file.name
 
