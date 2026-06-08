@@ -2,6 +2,7 @@ from unittest.mock import patch
 
 import pytest
 from src.product import Product
+from tests.conftest import first_product
 
 
 class TestProduct:
@@ -42,12 +43,7 @@ class TestProduct:
     def test_new_product_quantity(self, first_product):
         """Тест: при добавлении дубликата складывается количество"""
         products = [first_product]
-        product_dict = {
-            "name": "Test Product 1",
-            "description": "Description",
-            "price": 10,
-            "quantity": 3
-        }
+        product_dict = {"name": "Test Product 1", "description": "Description", "price": 10, "quantity": 3}
         new = Product.new_product(product_dict, products)
 
         assert first_product.quantity == 8
@@ -56,12 +52,15 @@ class TestProduct:
     def test_new_product_higher_price(self, first_product):
         """Тест: при дубликате выбирается большая цена"""
         products = [first_product]
-        product_dict = {
-            "name": "Test Product 1",
-            "description": "Description",
-            "price": 20,
-            "quantity": 3
-        }
+        product_dict = {"name": "Test Product 1", "description": "Description", "price": 20, "quantity": 3}
         new = Product.new_product(product_dict, products)
 
         assert first_product.price == 20
+
+    def test_product_str(self, first_product):
+        """Тест представления строкового формата товара"""
+        assert str(first_product) == "Test Product 1, 10 руб. Остаток: 5 шт."
+
+    def test_product_add(self, first_product, second_product):
+        """Тест подсчета всех товаров на складе"""
+        assert (first_product + second_product) == 70
