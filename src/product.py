@@ -18,7 +18,7 @@ class Product:
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
-        """Метод для получения суммы всех товаров на складе"""
+        """Метод для получения суммы всех товаров на складе с проверкой на одинаковый класс продуктов"""
         if type(self) == type(other):
             return self.__price * self.quantity + other.__price * other.quantity
         raise TypeError
