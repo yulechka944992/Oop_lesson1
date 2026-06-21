@@ -6,7 +6,8 @@ import os
 from src.product import Product
 from src.category import Category
 from src.iterator import CategoryIterator
-
+from src.smartphone import Smartphone
+from src.lawngrass import LawnGrass
 
 @pytest.fixture
 def first_product():
@@ -93,3 +94,23 @@ def sample_json_file(sample_json_data):
 def category_iterator(category_with_products):
     """Фикстура для итератора, использующая другую фикстуру"""
     return CategoryIterator(category_with_products)
+
+
+@pytest.fixture
+def smartphone1():
+    return Smartphone("Iphone 17", "512GB, Gray space", 180000, 1, "98.2", "17", 512, "Gray space")
+
+
+@pytest.fixture
+def smartphone2():
+    return Smartphone("Honor", "256GB, White", 80000, 1, "92", "50", 256, "White")
+
+
+@pytest.fixture
+def lawngrass1():
+    return LawnGrass("Газонная трава", "Элитная трава для газона", 500.0, 20, "Россия", "7 дней", "Зеленый")
+
+
+@pytest.fixture
+def lawngrass2():
+    return LawnGrass("Газонная трава 2", "Выносливая трава", 450.0, 15, "США", "5 дней", "Темно-зеленый")
