@@ -18,12 +18,11 @@ def create_objects_from_json(data):
     categories = []
     for category_data in data:
         products = [Product(**product_data) for product_data in category_data["products"]]
-        categories.append(Category(
-            name=category_data["name"],
-            description=category_data["description"],
-            products=products
-        ))
+        categories.append(
+            Category(name=category_data["name"], description=category_data["description"], products=products)
+        )
     return categories
+
 
 # if __name__ == "__main__":
 #     data = read_json("data/products.json")

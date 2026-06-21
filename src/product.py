@@ -13,8 +13,16 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
+    def __str__(self):
+        """Строковое представление товара для пользователя"""
+        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other):
+        """Метод для получения суммы всех товаров на складе"""
+        return self.__price * self.quantity + other.__price * other.quantity
+
     @classmethod
-    def new_product(cls, product_dict,products=None):
+    def new_product(cls, product_dict, products=None):
         """Создаёт новый продукт из словаря"""
         name = product_dict["name"]
         description = product_dict["description"]

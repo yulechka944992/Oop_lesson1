@@ -1,6 +1,7 @@
 import pytest
 from src.product import Product
 from src.category import Category
+from tests.conftest import first_product, second_product
 
 
 class TestCategory:
@@ -27,3 +28,14 @@ class TestCategory:
         cat2 = Category("Cat2", "Desc2", [])
 
         assert Category.category_count == 2
+
+    def test_category_str(self, category_with_products):
+        """Тест сторокового формата категории товаров"""
+        assert str(category_with_products) == "Test Category 1, количество продуктов: 6 шт."
+
+    def test_products(self):
+        """Тест правильного отображения строки"""
+        category = Category(name="Test Category", description="Test Description", products=[])
+        category.add_product(Product("Product 1", "desc", 1500, 3))
+
+        assert category.products == "Product 1, 1500 руб. Остаток: 3 шт."

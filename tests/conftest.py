@@ -5,6 +5,7 @@ import os
 
 from src.product import Product
 from src.category import Category
+from src.iterator import CategoryIterator
 
 
 @pytest.fixture
@@ -86,3 +87,9 @@ def sample_json_file(sample_json_data):
 
     if os.path.exists(tmp_file_path):
         os.unlink(tmp_file_path)
+
+
+@pytest.fixture
+def category_iterator(category_with_products):
+    """Фикстура для итератора, использующая другую фикстуру"""
+    return CategoryIterator(category_with_products)
