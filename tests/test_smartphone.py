@@ -1,5 +1,6 @@
 import pytest
 
+
 def test_smartphone_init(smartphone1):
     assert smartphone1.name == "Iphone 17"
     assert smartphone1.description == "512GB, Gray space"

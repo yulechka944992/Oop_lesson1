@@ -39,3 +39,11 @@ class TestCategory:
         category.add_product(Product("Product 1", "desc", 1500, 3))
 
         assert category.products == "Product 1, 1500 руб. Остаток: 3 шт."
+
+    def test_add_product_error(self):
+        category = Category("Электроника", "Смартфоны", [])
+        with pytest.raises(TypeError):
+            category.add_product("не продукт")
+
+        with pytest.raises(TypeError):
+            category.add_product(123)
