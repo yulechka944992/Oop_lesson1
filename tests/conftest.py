@@ -9,6 +9,7 @@ from src.iterator import CategoryIterator
 from src.smartphone import Smartphone
 from src.lawngrass import LawnGrass
 
+
 @pytest.fixture
 def first_product():
     """Фикстура с первым продуктом"""
