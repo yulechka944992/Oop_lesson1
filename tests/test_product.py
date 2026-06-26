@@ -64,3 +64,8 @@ class TestProduct:
     def test_product_add(self, first_product, second_product):
         """Тест подсчета всех товаров на складе"""
         assert (first_product + second_product) == 70
+
+    def test_product_add_error(self, smartphone1, lawngrass2):
+        """Тест проверяет, что выбрасывается исключение при сложении разных типов товаров"""
+        with pytest.raises(TypeError):
+            result = smartphone1 + lawngrass2
