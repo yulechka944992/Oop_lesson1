@@ -17,9 +17,7 @@ class Product(PrintMixin, BaseProduct):
         self.__price = price
         self.quantity = quantity
         super().__init__()
-        print(repr(self))
-
-
+        # print(repr(self))
 
     def __str__(self):
         """Строковое представление товара для пользователя"""
