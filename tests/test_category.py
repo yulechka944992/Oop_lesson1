@@ -1,4 +1,6 @@
 import pytest
+
+from src import category
 from src.product import Product
 from src.category import Category
 from tests.conftest import first_product, second_product
@@ -41,9 +43,18 @@ class TestCategory:
         assert category.products == "Product 1, 1500 руб. Остаток: 3 шт."
 
     def test_add_product_error(self):
+        """Тест ошибки при добавлении некорректного товара"""
         category = Category("Электроника", "Смартфоны", [])
         with pytest.raises(TypeError):
             category.add_product("не продукт")
 
         with pytest.raises(TypeError):
             category.add_product(123)
+
+    def test_middle_price(self, category_with_products):
+        """Тест успешной работы функции по подсчету средней цены"""
+        assert category_with_products.middle_price() == 15
+
+    def test_middle_price_empty_cat(self, empty_category):
+        """Тест подсчета средней цены товара из пустой категории"""
+        assert empty_category.middle_price() == 0
