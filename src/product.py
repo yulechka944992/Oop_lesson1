@@ -12,6 +12,9 @@ class Product(PrintMixin, BaseProduct):
 
     def __init__(self, name, description, price, quantity):
         """Инициализация товара"""
+        if quantity <= 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
+
         self.name = name
         self.description = description
         self.__price = price

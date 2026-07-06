@@ -1,3 +1,5 @@
+from itertools import product
+
 from src.product import Product
 
 
@@ -46,6 +48,9 @@ class Category:
         """Доступ к исходному списку продуктов для итерации"""
         return self.__products
 
-    # @property
-    # def products(self):
-    #     return "".join(f"{p.name}, {p.price} руб. Остаток: {p.quantity} шт.\n" for p in self.__products)
+    def middle_price(self):
+        """Метод подсчета среднего ценника всех товаров"""
+        try:
+            return sum([product.price for product in self. __products]) / len(self.__products)
+        except ZeroDivisionError:
+            return 0
