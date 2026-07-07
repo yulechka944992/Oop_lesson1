@@ -17,8 +17,10 @@ class TestProduct:
 
     def test_product_with_zero_quantity(self):
         """Тест с нулевым количеством"""
-        product = Product("Out of stock", "No items", 100, 0)
-        assert product.quantity == 0
+        with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
+            Product("Out of stock", "No items", 100, 0)
+
+
 
     def test_product_negative_price_not_set(self, first_product):
         """Тест: отрицательная цена не устанавливается"""
